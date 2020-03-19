@@ -44,7 +44,10 @@ function create(){
 
 
 function callLogs(){
-    console.log(phones.name + ' ' + phones.times);
+    for(var phone of phones)
+    {
+    console.log(phone.name + ' ' + phone.times);
+    }
     showMenu();
 }
 
@@ -66,8 +69,10 @@ function message(name){
         if(mess[i].name == name)
         {
             mess[i].content = content;
+            console.log('Sent');
         }
     }
+    
 }
 
 function deleteCon(name){
@@ -163,7 +168,7 @@ function save(){
     var content = JSON.stringify(phones);
     fs.writeFileSync('./database/phone.json',content);
     var content = JSON.stringify(mess);
-    fs.writeFileSync('./database/messjson',content);
+    fs.writeFileSync('./database/mess.json',content);
 }
 
 
@@ -193,7 +198,6 @@ function showMenu(){
             break;
         case '4':
             save();
-            showMenu();
             break;
         default:
             console.log('Wrong option!');
